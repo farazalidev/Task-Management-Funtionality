@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React from "react";
 import useSWR from "swr";
@@ -5,9 +6,8 @@ import { GetMyWorkspaces } from "../../utils/api";
 import NoData from "../../components/status/NoData";
 import WorkspaceCard from "@/components/workspace/WorkspaceCard";
 
-interface pageProps {}
 
-const Page: React.FC<pageProps> = () => {
+const Page: React.FC= () => {
   const { data, error, isLoading } = useSWR("/myworkspaces", GetMyWorkspaces);
 
   if (isLoading) {

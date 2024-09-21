@@ -1,15 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import CircleLoader from "@/components/status/CirlceLoader";
 import NoData from "@/components/status/NoData";
 import WorkspaceCard from "@/components/workspace/WorkspaceCard";
 import { GetWorkspaces } from "@/utils/api";
-import type { HTMLAttributes } from "react";
 import React from "react";
 import useSWR from "swr";
 
-interface pageProps extends HTMLAttributes<HTMLDivElement> {}
 
-const Page: React.FC<pageProps> = ({ ...props }) => {
+const Page: React.FC= () => {
   const { data, error, isLoading } = useSWR("/workspace", GetWorkspaces);
   if (isLoading) {
     return <CircleLoader />;

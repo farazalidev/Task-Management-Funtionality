@@ -5,7 +5,6 @@ import { sidebardata, SideBarDataType } from "./sidebar.data";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface SidebarProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const Sidebar: React.FC<SidebarProps> = ({ ...props }) => {
