@@ -16,6 +16,8 @@ export const authorize: RequestHandler = async (req, res, next) => {
       const existingUser = await UserModel.findOne({
         _id: decodedToken.user_id,
       });
+      console.log(existingUser);
+      
 
       if (!existingUser) {
         return res.status(400).json({ message: "entity does not exists" });

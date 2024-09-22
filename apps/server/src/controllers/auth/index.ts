@@ -26,13 +26,13 @@ export const loginController: RequestHandler = async (req, res, _next) => {
 
     if (!isValidPassword) {
       return res
-        .status(200)
+        .status(400)
         .json({ message: "provided email or password invalid" });
     }
     const accessToken = await generateAcessToken({
       user_id: user._id.toString(),
     });
-    return res.status(200).json({ message: "login successful", accessToken });
+    return res.status(200).cookie("accessToken",accessToken).json({ message: "login successful", accessToken });
   } catch (error) {
     return res.status(500).json({ message: "internal server error", error });
   }
@@ -65,7 +65,7 @@ export const RegisterController: RequestHandler = async (req, res) => {
 
     await newUser.save();
 
-    return res.status(201).json({ message: "reg successful", accessToken });
+    return res.status(201).cookie("accessToken",accessToken).json({ message: "reg successful", accessToken });
   } catch (error) {
     console.log(error);
 

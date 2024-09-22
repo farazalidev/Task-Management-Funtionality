@@ -9,6 +9,7 @@ const TaskSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  status:{type:String, enum:["completed","pending","in-progress"],default:"pending"},
   priority: { type: String, enum: ["low", "medium", "high"] },
   workspace: { type: mongoose.Schema.ObjectId, ref: collectionNames.WORKSPACE },
 });

@@ -5,15 +5,16 @@ import dotenv from "dotenv";
 import { AuthRoutes } from "./routes/auth";
 import cors from "cors";
 import { WorkspaceRoutes } from "./routes/workspace";
+import { UserRoutes } from "./routes/user";
 dotenv.config();
 
 const PORT = process.env.PORT || 8081;
 const app = express();
 
 const mainRouter = Router();
-mainRouter.use("/api", [AuthRoutes, WorkspaceRoutes]);
+mainRouter.use("/api", [AuthRoutes, WorkspaceRoutes,UserRoutes]);
 
-app.use(cors({ origin: "*" }));
+app.use(cors({ origin: "http://localhost:3000" ,credentials:true}));
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use(mainRouter);
