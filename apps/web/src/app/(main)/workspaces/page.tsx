@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import CircleLoader from "@/components/status/CirlceLoader";
+import DisplayError from "@/components/status/Error";
 import NoData from "@/components/status/NoData";
 import WorkspaceCard from "@/components/workspace/WorkspaceCard";
 import { GetWorkspaces } from "@/utils/api";
@@ -15,16 +16,14 @@ const Page: React.FC= () => {
   }
 
   if (error) {
-    return <h1>error {JSON.stringify(error)}</h1>;
+    return <DisplayError errorMessage={ error?.message} />;
   }
 
   return (
     <div className="h-full px-3 py-4">
       <div className="pb-4 flex place-items-center justify-between">
         <h2 className="text-xl font-bold ">My Workspaces</h2>
-        <button className="border-[2px] border-black px-2 py-1">
-          Add More
-        </button>
+        
       </div>
       {data?.data?.workspaces?.length === 0 ? (
         <NoData name="workspaces" />

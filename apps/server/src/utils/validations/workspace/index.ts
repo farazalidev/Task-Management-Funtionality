@@ -30,8 +30,28 @@ export const ReAssignTaskSchema = z.object({
   assigned_to_email:z.string().email()
 })
 
+export const addCommentToTaskSchema= z.object({
+  workspace_id: ObjectIdSchema,
+task_id:ObjectIdSchema,
+comment:z.string()
+})
+
+export const getTaskDetailsSchema= z.object({
+  workspace_id:ObjectIdSchema,
+  task_id:ObjectIdSchema
+})
+
+export const GetMyWorkspacesReportsSchema = z.object({
+  all: z.enum(["true","false"]).optional(),
+  by_user: ObjectIdSchema.optional(),
+  from: z.string().optional(),
+  to:z.string().optional(),
+})
 export type CreateWorkspaceBody = z.infer<typeof CreateWorkSpaceSchema>;
 export type AddUserToWorkspaceBody = z.infer<typeof AddUserToWorkspaceSchema>;
 export type GetWorkspaceTasksBody= z.infer<typeof GetWorkspaceTasksSchema>
 export type CreateWorkspaceTaskBody= z.infer<typeof CreateWorkspaceTaskSchema>
 export type ReAssignTaskBodySchema =z.infer<typeof ReAssignTaskSchema>
+export type AddTaskToCommentBody = z.infer<typeof addCommentToTaskSchema>
+export type GetTaskDetailsQuery = z.infer<typeof getTaskDetailsSchema>
+export type GetMyWorkspaceReportsQuery = z.infer<typeof GetMyWorkspacesReportsSchema>
